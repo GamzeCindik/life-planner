@@ -10,11 +10,17 @@ import {
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import { COLORS, FONTS } from '../styles/Theme'
 import '../styles/Fonts.css'
+import { UseUsers } from '../hooks/UseUser'
 
 const SideMenu = () => {
   const [open, setOpen] = React.useState(true)
+  const { data: users, isLoading, error } = UseUsers()
 
   const toggleDrawer = (state) => () => setOpen(state)
+
+  const handleClick = () => {
+    console.log('users' + users)
+  }
 
   const menuItems = [
     'Dashbord',
@@ -60,6 +66,7 @@ const SideMenu = () => {
             '&:hover': { backgroundColor: COLORS.accent },
             boxShadow: 2,
           }}
+          onClick={handleClick}
         >
           <ChevronLeftIcon />
         </IconButton>
